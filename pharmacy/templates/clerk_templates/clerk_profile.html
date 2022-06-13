@@ -1,0 +1,142 @@
+{% extends 'clerk_templates/base_template.html'%} {% block main_content %}
+<div class="content">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-body">
+                <a href="" class="btn btn-warning"> &#8592; Back to Profile  </a>
+                <hr>
+                <h3 style="text-align:center;">Account Settings</h3>
+                <hr>
+                <div class="profile-sidebar">
+                    <div class="profile-userpic">
+                        <img src="{{request.user.pharmacyclerk.profile_pic.url}}" class="img-responsive" alt="">
+                    </div>
+
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            {{request.user.first_name}} {{request.user.last_name}}
+                        </div>
+                        <div class="profile-usertitle-job">
+                            Receptionist
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Update Profile</h3>
+                </div>
+                <form action="" method="post" action="{% url 'clerk_profile' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card-body">
+
+                        {% if messages %}
+                        <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %} {% if message.tags == "error" %}
+                                <div class="col-sm-12">
+                                    <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1 " role="alert" data-brk-library="component__alert">
+                                        <button type="button" class="close font__size-18" data-dismiss="alert">
+                                    <span aria-hidden="true">
+                                        <i class="fa fa-times danger "></i>
+                                    </span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                        <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+                                        <strong class="font__weight-semibold">Oh snap!</strong> {{message}}
+                                    </div>
+                                </div>
+                                {% elif message.tags == "success" %}
+                                <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1">
+                                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                                                                      <span aria-hidden="true">
+                                                      <i class="fa fa-times greencross"></i>
+                                                      </a></span>
+                                                                      <span class="sr-only">Close</span> 
+                                                                  </button>
+                                    <i class="start-icon far fa-check-circle faa-tada animated"></i>
+                                    <strong class="font__weight-semibold">Well done!</strong> {{message}}
+                                </div>
+                                {% endif %} {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <h6 class="heading-small text-muted ">User information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Username</label>
+                                        <input type="text" class="form-control" name="username" value="{{ user.username }}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Email </label>
+                                        <input type="text" class="form-control" name="email" value="{{ user.email }}" disabled="disabled">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">First Name </label>
+                                        <input type="text" class="form-control" name="first_name" value="{{ user.first_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Last Name </label>
+                                        <input type="text" class="form-control" name="last_name" value="{{ user.last_name }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <h6 class="heading-small text-muted mb-1">Contact information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="form-group focused">
+                                        <label class="form-control-label" for="input-address">Address</label>
+                                        <input class="form-control" placeholder="Home Address" name="address" type="text" value="{{staff.address}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group focused">
+                                        <label class="form-control-label" for="input-city">Mobile</label>
+                                        <input type="text" id="input-city" name="mobile" class="form-control" placeholder="City" value="{{staff.mobile}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="file" name="profile_pic" accept="image/*" id="id_profile_pic">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="card-footer mt-3">
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </div>
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'hod_templates/base_template.html'%} {% block page_title %}
+<h5>Manage Drugs</h5>
+
+{% endblock page_title %} {% block main_content %}
+<section class="content">
+    {% if messages %}
+    <div class="form-group">
+        <div class="col-12">
+            {% for message in messages %} {% if message.tags == "error" %}
+            <div class="col-sm-12">
+                <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1 " role="alert" data-brk-library="component__alert">
+                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                        <span aria-hidden="true">
+                            <i class="fa fa-times danger "></i>
+                        </span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+                    <strong class="font__weight-semibold">Oh snap!</strong> {{message}}
+                </div>
+            </div>
+            {% elif message.tags == "success" %}
+            <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1">
+                <button type="button" class="close font__size-18" data-dismiss="alert">
+                                              <span aria-hidden="true">
+                              <i class="fa fa-times greencross"></i>
+                              </a></span>
+                                              <span class="sr-only">Close</span> 
+                                          </button>
+                <i class="start-icon far fa-check-circle faa-tada animated"></i>
+                <strong class="font__weight-semibold">Well done!</strong> {{message}}
+            </div>
+            {% endif %} {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card manage sc">
+                <div class="card-header">
+                    <span>Manage Drugs</span>
+                    <div class="card-tools d-flex">
+                        <!--                
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                       
+                        <div class="input-group-append">
+                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div> -->
+                        <!-- <input type="search" name="search" id="filter" class="form-control float-right" placeholder="Search"> -->
+
+
+                        <a class="btn btn-sm btn-info mr-2" href="{% url 'add_stock' %}" role="button">+ Add New Drug</a>
+
+                    </div>
+
+                </div>
+                <table class="table table-bordered table-hover dataTable" id="plist">
+                    <thead>
+
+                        <tr>
+                            <th>No</th>
+                            <th>Drug</th>
+                            <th>Category</th>
+                            <th>Quantiy</th>
+                            <th>Reorder Level</th>
+                            <th>Date Stocked</th>
+                            <th>Expiry Date</th>
+                            <th class="text-center">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stock in stocks %}
+                        <tr class="hov">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{stock.drug_name}}</td>
+                            <td>{{stock.category}}</td>
+                            <td>
+                                <span class="d-flex justify-content-center">
+                                 {% if stock.quantity <= stock.reorder_level %}
+                                <div  class="d-flex justify-content-center px-2 mt-2"style="background-color:#a00b80;;border-radius: 10px;font-size: 11px; width:70px;font-weight: 600;color: white;">{{stock.quantity}}</div>
+                                {% else %}{{stock.quantity}}
+                                {% endif %}</span>
+
+                            </td>
+                            <td>
+                                {% if stock.reorder_level %}
+                                <a href="{% url 'reorder_level' stock.id %}">{{stock.reorder_level}}</a></td>
+                            {% else %}
+                            <a href="{% url 'reorder_level' stock.id %}">Add level</a> {% endif %}
+                            <td>{{stock.last_updated |date:"F d, Y"}}</td>
+
+                            <!-- Checks expired drugs -->
+
+                            {% for expire in expired %} {% if stock.drug_name == expire.drug_name %}
+                            <td class="">
+                                <div style="background-color: rgb(48, 58, 92);border-radius: 10px;font-size: 11px; width:120px;font-weight: 600;color: white;" class="d-flex justify-content-center ml-2 mt-2 px-1 "> EXPIRED </div>
+                            </td>
+                            {% endif %} {% endfor %}
+                            <!-- Checks Not expired drugs -->
+
+
+                            {% for expire in expa %} {% if stock.drug_name == expire.drug_name %}
+                            <td>{{expire.valid_to}}</td>
+                            {% endif %} {% endfor %}
+                            <!-- End Expire -->
+                            <td class="d-flex justify-content-center">
+                                <a href="{%url 'edit_drug' stock.id %}" class="btn btn-sm btn-success">Edit</a> &nbsp;
+                                <a href="{%url 'delete_drug' stock.id %}" class="btn btn-sm btn-danger">Delete</a> &nbsp;
+                                <a href="{% url 'drug_detail' stock.id %}" class="btn btn-sm btn-warning">View</a>
+                                <a href="{%url 'receive_drug' stock.id %}" class="btn btn-sm btn-primary ml-2">Add</a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

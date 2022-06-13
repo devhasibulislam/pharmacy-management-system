@@ -1,0 +1,110 @@
+{% extends 'hod_templates/base_template.html'%} {% block page_title %}
+<h5>PharmacyClerk</h5>
+
+{% endblock page_title %} {% block main_content %}
+<section class="content">
+    {% if messages %}
+    <div class="form-group">
+        <div class="col-12">
+            {% for message in messages %} {% if message.tags == "error" %}
+            <div class="col-sm-12">
+                <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1 " role="alert" data-brk-library="component__alert">
+                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                                                <span aria-hidden="true">
+                                                    <i class="fa fa-times danger "></i>
+                                                </span>
+                                                <span class="sr-only">Close</span>
+                                            </button>
+                    <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+                    <strong class="font__weight-semibold">Oh snap!</strong> {{message}}
+                </div>
+            </div>
+            {% elif message.tags == "success" %}
+            <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1">
+                <button type="button" class="close font__size-18" data-dismiss="alert">
+                                              <span aria-hidden="true">
+                              <i class="fa fa-times greencross"></i>
+                              </a></span>
+                                              <span class="sr-only">Close</span> 
+                                          </button>
+                <i class="start-icon far fa-check-circle faa-tada animated"></i>
+                <strong class="font__weight-semibold">Well done!</strong> {{message}}
+            </div>
+            {% endif %} {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="card card-primary sc">
+                <div class="card-header">
+                    <span>PharmacyClerk details</span>
+                    <div class="card-tools d-flex">
+
+
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="search" class="form-control float-right" placeholder="Search" id="pple">
+
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+
+                        <a class="btn btn-sm btn-info mr-2" href="{% url 'add_pharmacyClerk' %}" role="button">+ Add PharmacyClerk</a>
+
+                    </div>
+                </div>
+                <table class="table" id="plist">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>pic</th>
+                            <th>UserName</th>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Email</th>
+
+                            <th>Mobile</th>
+
+                            <th>Address</th>
+                            <th>last Login</th>
+                            <th class="text-center">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for staff in staffs %}
+                        <tr class="hov">
+                            <td>{{staff.id}}</td>
+                            <td> <img src="{{staff.profile_pic.url}}" class="" width="35" height="35" alt=""></td>
+                            <td>{{staff.admin.username}}</td>
+                            <td>{{staff.admin.first_name}}</td>
+                            <td>{{staff.admin.last_name}}</td>
+
+                            <td>{{staff.admin.email}}</td>
+                            <td>{{staff.mobile}}</td>
+
+                            <td>{{staff.address}}</td>
+                            <td>{{staff.admin.last_login}}</td>
+                            <td><a href="{% url 'delete_clerk' staff.id %}" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="{% url 'edit_clerk' staff.admin.id %}" class="btn btn-sm btn-success">Edit</a>
+                            </td>
+
+
+                            <!-- <td>{{patient.dob|date:"F   d, Y"}}</td>
+                        <td>{{patient.mobile}}</td> -->
+                            <!-- <td>{{patient.date_admitted}}</td> -->
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

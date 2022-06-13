@@ -1,0 +1,81 @@
+{% extends 'patient_templates/base_template.html'%} {% block page_title %}
+<h5>All patients</h5>
+
+{% endblock page_title %} {% block main_content %}
+<style>
+    .sc2 {
+        word-wrap: wrap;
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .lopy {
+        word-wrap: none !important;
+    }
+</style>
+<section class="content">
+    {% include 'patient_templates/alert_messeges.html' %}
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card manage sc2">
+                <div class="card-header">
+                    <span>Patiets Records</span>
+                    <div class="card-tools d-flex">
+
+                        <form role="form" method="POST" action="" enctype="multipart/form-data" class="mr-4 mt-1">
+                            {% csrf_token %}
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="search" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <a class="btn btn-sm btn-info mr-2" href="{% url 'patient_form' %}" role="button">+ Add Staff</a>
+
+                    </div>
+
+                </div>
+                <table class="table table-bordered table-hover dataTable">
+                    <thead>
+
+                        <tr>
+                            <th>No</th>
+                            <th>Drug</th>
+                            <th>Quantiy Dispensed</th>
+                            <th>Instructions</th>
+                            <th>Dispensed</th>
+                            <th>Expiry date</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stock in dispense %}
+                        <tr class="hov">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{stock.drug_id}}</td>
+                            <td>{{stock.dispense_quantity}}</td>
+                            <td class="lopy">{{stock.instructions}}</td>
+                            <td>{{stock.dispense_at|date:"F d, Y"}}</td>
+
+                            <td>{{stock.drug_id.valid_to |date:"F d, Y"}}</td>
+                            <td>
+                            </td>
+
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

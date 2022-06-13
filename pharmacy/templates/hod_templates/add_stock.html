@@ -1,0 +1,52 @@
+{% extends 'hod_templates/base_template.html'%} {% load crispy_forms_tags %} {% block page_title %}
+<h5>Add New Drug</h5>
+{% endblock page_title %} {% block main_content %}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Add a New Drug</h3>
+                </div>
+                <form method="POST" style="font-size:13px;" class='px-3 py-2' enctype="multipart/form-data">
+                    {% csrf_token %} {% if messages %}
+                    <div class="form-group">
+                        <div class="col-12">
+                            {% for message in messages %} {% if message.tags == "error" %}
+                            <div class="col-sm-12">
+                                <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1 " role="alert" data-brk-library="component__alert">
+                                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                           <span aria-hidden="true">
+                           <i class="fa fa-times danger "></i>
+                           </span>
+                           <span class="sr-only">Close</span>
+                           </button>
+                                    <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+                                    <strong class="font__weight-semibold">Oh snap!</strong> {{message}}
+                                </div>
+                            </div>
+                            {% elif message.tags == "success" %}
+                            <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1">
+                                <button type="button" class="close font__size-18" data-dismiss="alert">
+                        <span aria-hidden="true">
+                        <i class="fa fa-times greencross"></i>
+                        </a></span>
+                        <span class="sr-only">Close</span> 
+                        </button>
+                                <i class="start-icon far fa-check-circle faa-tada animated"></i>
+                                <strong class="font__weight-semibold">Well done!</strong> {{message}}
+                            </div>
+                            {% endif %} {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        {{form|crispy}}
+                    </div>
+                    <input type="submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main_content %}

@@ -1,0 +1,127 @@
+{% extends 'hod_templates/base_template.html'%} {% block main_content %}
+<div class="content">
+    <div class="container-fluid mb-4">
+        <div class="row">
+            <div class="col-12 panel-header-oly">
+                <div class="profile-header d-flex align-items-center position-relative rounded overflow-hidden">
+                    <div class="position-absolute l-0 t-0 r-0 b-0 bs-c bp-c o-10" style="background: url(/static/images/profile-bg.jpg);"></div>
+                    <div class="position-relative d-flex flex-wrap w-100">
+                        <div class="flex-1 d-flex align-items-center px-4 my-3 w-100 w-lg-auto moo">
+                            <div class="pr-6">
+                                <img class="profile-avatar rounded-circle" src="{{request.user.adminhod.profile_pic.url}}" alt="Avatar">
+                            </div>
+                            <div class="pro-info">
+                                <div class="lh-1 mb-3" width="38" height="38">
+                                    <h4 class="mb-1 text-nowrap"> {{user.first_name}} {{user.last_name}}</h4>
+                                    <span>Pharmacy Admin / MMUST</span>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="mr-2">
+                                        <span class="small text-uppercase">Email: <span class=" text-white text-lowercase">{{user.email}}</span></span>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="d-flex align-items-center my-3 px-4 ">
+                  <a href="#" class="btn btn-theme mr-4"><i class="fas fa-plus mr-1"></i>Change Profile</a>
+                  <a href="#" class="btn btn-danger">Remove</a>
+                </div> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mx-2">
+        <div class="card-header">
+            <span>About</span>
+            <div class="card-tools d-flex">
+
+                <a href="{% url 'edit-admin'  %}"> <button id="edit-btn" type="button" class="btn btn-sm btn-primary  float-right">
+                  <i class="fas fa-edit"></i>
+                </button></a>
+
+            </div>
+
+        </div>
+
+        <div class="card-block">
+            <div class="view-info">
+                <div class="row">
+                    <div class="col-lg-12 pb-5">
+                        <div class="general-info">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-6 ">
+                                    <div class="table-responsive ">
+                                        <table class="table m-0">
+                                            <tbody>
+                                                <th scope="row">Full Name</th>
+                                                <td>{{user.first_name}} {{user.last_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Gender</th>
+                                                    <td>Male</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Birth Date</th>
+                                                    <td>October 25th, 1999</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Marital Status</th>
+                                                    <td>Single</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Location</th>
+                                                    <td>{{user.address}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Email</th>
+                                                    <td><a href="#!">{{user.email}}</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Mobile Number</th>
+                                                    <td>{{user.mobile}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Twitter</th>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Skype</th>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Website</th>
+                                                    <td>
+                                                        <a href="#!"></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

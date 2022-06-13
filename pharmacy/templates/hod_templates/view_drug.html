@@ -1,0 +1,27 @@
+{% extends 'hod_templates/base_template.html'%} {% load static %} {% block page_title %}
+<h4>Dashboard</h4> {% endblock page_title %} {% block main_content %}
+<div class="content">
+    <div class="container">
+        <div class="col-md-4 mt-3">
+            <div class="card " style="  background: #e0eafc !important;
+              ">
+                <div class="pid-box-1 d-flex justify-content-center" data-pid-imprintid="8011">
+
+                    <img src="{{stocks.drug_pic.url}}" data-orig-height="216" width="343" height="270" alt=" ">
+                </div>
+                <div class="pid-details pt-4">
+                    <ul class="ddc-list-unstyled ">
+                        <li><b>Drug:</b> <a href="#" class="imprintdruglink"> {{stocks.drug_name}}</a></li>
+                        <li><b>Strength:</b> {{stocks.drug_strength}}</li>
+                        <li><b>Pill Imprint:</b> <a href="#"> {{stocks.drug_imprint }}</a></li>
+                        <li><b>Color:</b> {{stocks.drug_color}}</li>
+                        <li><b>Shape:</b> {{stocks.drug_shape}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

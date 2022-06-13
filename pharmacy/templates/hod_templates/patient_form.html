@@ -1,0 +1,81 @@
+{% extends 'hod_templates/base_template.html'%} {% load crispy_forms_tags %} {% block page_title %}
+<h5>Add patient</h5>
+
+{% endblock page_title %} {% block main_content %}
+<section class="content" style="">
+    <div class="container-fluid">
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Patient</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+
+                    <form role="form" method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %} {% if messages %}
+                        <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %} {% if message.tags == "error" %}
+                                <div class="col-sm-12">
+                                    <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1 " role="alert" data-brk-library="component__alert">
+                                        <button type="button" class="close font__size-18" data-dismiss="alert">
+                                                                    <span aria-hidden="true">
+                                                                        <i class="fa fa-times danger "></i>
+                                                                    </span>
+                                                                    <span class="sr-only">Close</span>
+                                                                </button>
+                                        <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+                                        <strong class="font__weight-semibold">Oh snap!</strong> {{message}}
+                                    </div>
+                                </div>
+                                {% elif message.tags == "success" %}
+                                <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1">
+                                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                                                                  <span aria-hidden="true">
+                                                  <i class="fa fa-times greencross"></i>
+                                                  </a></span>
+                                                                  <span class="sr-only">Close</span> 
+                                                              </button>
+                                    <i class="start-icon far fa-check-circle faa-tada animated"></i>
+                                    <strong class="font__weight-semibold">Well done!</strong> {{message}}
+                                </div>
+                                {% endif %} {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <div class="card-body">
+                            {{form|crispy}}
+                            <!-- <div class="form-group">
+                                {% for field in form %}
+                        
+                                        {{ field.errors }}
+                                        {{ field.label_tag }}
+                                        {{ field }}
+                                        {% endfor %}
+
+                                    </div> -->
+
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock main_content %}

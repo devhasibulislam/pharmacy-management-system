@@ -1,0 +1,99 @@
+{% extends 'hod_templates/base_template.html'%} {% block main_content %}
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Staff</h3>
+                    </div>
+
+                    <form role="form" method="POST" action="">
+                        {% csrf_token %} {% if messages %}
+                        <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %} {% if message.tags == "error" %}
+                                <div class="col-sm-12">
+                                    <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1 " role="alert" data-brk-library="component__alert">
+                                        <button type="button" class="close font__size-18" data-dismiss="alert">
+                                                                <span aria-hidden="true">
+                                                                    <i class="fa fa-times danger "></i>
+                                                                </span>
+                                                                <span class="sr-only">Close</span>
+                                                            </button>
+                                        <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+                                        <strong class="font__weight-semibold">Oh snap!</strong> {{message}}
+                                    </div>
+                                </div>
+                                {% elif message.tags == "success" %}
+                                <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1">
+                                    <button type="button" class="close font__size-18" data-dismiss="alert">
+                                                              <span aria-hidden="true">
+                                              <i class="fa fa-times greencross"></i>
+                                              </a></span>
+                                                              <span class="sr-only">Close</span> 
+                                                          </button>
+                                    <i class="start-icon far fa-check-circle faa-tada animated"></i>
+                                    <strong class="font__weight-semibold">Well done!</strong> {{message}}
+                                </div>
+                                {% endif %} {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Email address</label>
+                                <input type="email" class="form-control" name="email" value="{{ staff.admin.email }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" name="username" value="{{ staff.admin.username }}">
+                            </div>
+
+                            {% comment %}
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password" value="{{ staff.admin.password }}">
+                            </div> {% endcomment %}
+
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="first_name" value="{{ staff.admin.first_name }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="last_name" value="{{ staff.admin.last_name }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" name="address">{{ staff.address }}</textarea>
+                            </div>
+
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Update Staff</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+
+{% endblock %}

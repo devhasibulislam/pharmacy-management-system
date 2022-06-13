@@ -1,0 +1,209 @@
+{% extends 'pharmacist_templates/base_template.html'%}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+<h5>Add patient</h5>
+
+{% endblock page_title %}
+{% block main_content %}
+<style>
+    #div_id_patient_id{
+        display: none !important;
+    }
+    .select2-container--default .select2-results__option[aria-disabled='true'] {
+    color: #0071d4 !important;
+;
+}
+.select2-container--default.select2-container--focus .select2-selection--single, .select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-color: #bbbfc4;
+}
+.select2-container input {
+  -webkit-transition: all 0.10s ease-in-out !important;
+  -moz-transition: all 0.10s ease-in-out !important;
+  -ms-transition: all 0.10s ease-in-out !important;
+  -o-transition: all 0.10s ease-in-out !important;
+  outline: none !important;
+  padding: 3px 0px 3px 3px!important;
+  margin: 5px 1px 3px 0px !important;
+  border: 1px solid #DDDDDD!important;
+}
+ 
+ .select2-container input:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1)  !important;
+  padding: 3px 0px 3px 3px !important;
+  margin: 5px 1px 3px 0px !important;
+  border: 1px solid rgb(85, 148, 165)!important;
+}
+
+
+
+.select2-container--default .select2-dropdown .select2-search__field, .select2-container--default .select2-search--inline .select2-search__field {
+    border: 1px solid #ced4da !important;
+  
+
+}
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    height: 45px;
+}
+
+</style>
+<section class="content">
+        <div class="container-fluid">
+            {% include 'pharmacist_templates/alert_messeges.html' %}
+            <h5 class="mt-4 ml-2">         PATIENT   NAME: <span style="font-style: italic; color:rgb(51, 178, 236);"> {{patients.admin.first_name}} {{patients.admin.last_name}} </span> 
+            </h5>
+
+                    <div class="col-md-12">
+                            <div class="row">
+
+                        <div class="col-md-6" style="display: block;">
+                            <div class="card card-info">
+                                    <div class="card-header">
+                                        
+                                            <h5>Stocked Drugs</h5>
+                                    </div>
+                                      
+                                    <table class="table table-bordered table-hover dataTable table5" id="plist">
+                                            <thead>
+                        
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Drug</th>
+                                            <th>Category</th>
+                                            <th>Quantiy</th>
+                                            <th>Date Stocked</th>
+                                        </tr>
+                                    </thead>
+                        
+                                           <tbody  id="japon">
+                                                {% for stoc in drugs %}
+
+                                        <tr class="hov" data-id={{stoc.id}}>
+                                            <td>{{stoc.id}} &#160;</td>
+                                            <td>{{stoc.drug_name}} &#160;</td>
+                                            <td>{{stoc.category}}</td>
+                                            <td>{{stoc.quantity}}</td>
+                        
+                                          <!-- start expire -->
+                        {% if expired %}
+                        <!-- Checks expired drugs -->
+
+                            {% for expire in expired %}
+                                {% if stoc.drug_name ==  expire.drug_name %}
+                                    <td class=""> <div style="background-color: rgb(48, 58, 92);border-radius: 10px;font-size: 11px; width:120px;font-weight: 600;color: white;" class="d-flex justify-content-center ml-2 mt-2 px-1 "> EXPIRED </div> </td>
+                                {% endif %}
+                            {% endfor %}
+                            <!-- Checks Not expired drugs -->
+
+                            {% for expire in expa %}
+                                {% if stoc.drug_name ==  expire.drug_name %}
+                                    <td>{{stoc.valid_to}}</td>
+                                {% endif %}
+                            {% endfor %}
+
+
+                        {% endif %}
+                       <!-- End Expire -->
+
+                                           
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                        
+                                          </table>
+                            </div>
+                             
+                        
+                        </div>
+                        
+        
+
+
+                    
+                        
+                  
+                     
+                <div class="col-md-6">
+                    <div class="card card-info">
+                            <div class="card-header">
+                                    <h5>Stocked Drugs</h5>
+                                   
+                                </div>
+                              
+                            <table class="table2 table-bordered table-hover " >
+                                    <thead>
+            
+                                <tr>
+                                    <th>No</th>
+                                   
+                                    <th>prescription</th>
+                                    <th>description</th>
+            
+                                    <!-- <th>Mobile</th>
+            
+                                     <th>Address</th> -->
+            
+                                </tr>
+                            </thead>
+                            {% for stoc in prescrips %}
+
+                                   <tbody  >
+                                <tr class="hov" >
+                                    <td>{{forloop.counter}} &#160;</td>
+                                   
+                                    <td>{{stoc.prescribe}}</td>
+                                    <td>{{stoc.description}}</td>
+            
+                                  
+                                  
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+
+                                  </table>
+                    </div>
+                     
+
+            </div>
+                       
+
+                        <!-- /.card -->
+    
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h5>Dispense Drug</h5>
+                        </div>
+
+                            <form role="form" method="POST" action="" enctype="multipart/form-data">
+                                {% csrf_token %}
+                            
+                                
+                                        
+                            
+                                <div class="card-body">
+                                 
+                            {{form|crispy}}
+                           
+                                </div>
+                            
+                                <div class="card-footer">
+                                <input type="button" class="btn btn-info ml-4 mb-4" data-toggle="modal" data-target=".bd-example-modal-sm" value="Submit"> 
+                                </div>
+                                {% include 'pharmacist_templates/insert_modal.html'%}
+
+                            </form>
+
+                    </div>
+                      
+                  </div>
+    
+            </div>
+{% endblock %}

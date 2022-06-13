@@ -1,0 +1,75 @@
+{% extends 'pharmacist_templates/base_template.html'%}
+{% block page_title %}
+ <h4>Dashboard</h4>
+{% endblock page_title %}
+
+{% block link %}
+{% endblock link %}
+
+{% block main_content %}
+<section class="content">
+  <div class="col-lg-12 col-md-12 dash-icon">
+    <div class="row">
+      <div class="col-lg-3 col-md-6   col-sm-6">
+        <div class="small-box mojahi">
+          <div class="inner">
+            <h3>{{patients_total}}</h3>
+
+            <p>Admitted Patients</p>
+          </div>
+          <div class="icon uzer">
+              <i class="fas fa-wheelchair"></i>
+          </div>
+          <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+ 
+      <!-- ./col -->
+      <div class="col-lg-3 col-sm-6  col-sm-6">
+        <div class="small-box mojahi2">
+          <div class="inner">
+            <h3>{{expired_total}}</h3>
+
+            <p>Expired Drugs</p>
+          </div>
+          <div class="icon">
+              <i class="fas fa-pills"></i>
+          </div>
+          <a href="" class="small-box-footer text-white">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6  col-sm-6">
+          <div class="small-box mojahi3">
+            <div class="inner">
+              <h3>{{out_of_stock}}</h3>
+  
+              <p>Drugs Out of Stock</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-capsules"></i>
+            </div>
+            <a href="" class="small-box-footer text-white">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6  col-sm-6">
+            <div class="small-box mojahi4">
+              <div class="inner">
+                <h3>{{total_drugs}}</h3>
+    
+                <p>Stocked Drugs</p>
+              </div>
+              <div class="icon">
+                  <i class="fas fa-layer-group"></i>
+              </div>
+              <a href="" class="small-box-footer text-white">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+    </div>
+  </div>
+        
+</section>
+
+{% endblock main_content %}
+          

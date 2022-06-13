@@ -1,0 +1,84 @@
+ {% extends 'pharmacist_templates/base_template.html'%} {% block page_title %}
+<h5>All patients</h5>
+{% endblock page_title %} {% block link %}
+<li class="breadcrumb-item active">all patients </li>
+{% endblock link %} {% block main_content %}
+
+<section class="content ">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="card card-primry  sc">
+                <div class="card sc table-title ">
+                    <div class="card-header ">
+                        <span>Patiets Records</span>
+                        <div class="card-tools d-flex">
+
+                            <form role="form" method="POST" action="" enctype="multipart/form-data" class="mr-4 mt-1">
+                                {% csrf_token %}
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="search" class="form-control float-right" placeholder="Search">
+
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                    {% include 'pharmacist_templates/alert_messeges.html' %}
+
+                    <table class="table able-striped table-hover" id="plist">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th></th>
+                                <th>UserName</th>
+                                <th>FirstName</th>
+                                <th>LastName</th>
+                                <th>Gender</th>
+                                <th>Email</th>
+
+                                <th>Mobile</th>
+
+                                <th class="text-center">Action</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for patient in patients %}
+                            <tr class="hov">
+                                <td>{{forloop.counter}}</td>
+                                <td> <img src="{{patient.profile_pic.url}}" class="" width="35" height="35" alt=""></td>
+                                <td>{{patient.admin.username}}</td>
+                                <td>{{patient.first_name}}</td>
+                                <td>{{patient.last_name}}</td>
+                                <td>{{patient.gender}}</td>
+                                <td>{{patient.admin.email}}</td>
+                                <td>{{patient.phone_number}}</td>
+
+                                <td>
+                                    <td><a href="{% url 'pharmacist_disp' patient.id %}" class="btn btn-sm btn-info">Dispense</a>
+
+
+
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+</section>
+
+{% endblock %}

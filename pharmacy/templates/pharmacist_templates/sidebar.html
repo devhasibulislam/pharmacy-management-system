@@ -1,0 +1,99 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="" class="brand-link ml-2">
+        <img src="{{request.user.pharmacist.profile_pic.url}}" alt="" width="36" height="36" class=" img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light mt-1 ml-3 mmust">H3TS</span>
+    </a>
+
+
+    <div class="sidebar">
+        <div class="user-panel mr-3">
+            <div class="pull-left image ml-2">
+                <img src="{{request.user.pharmacist.profile_pic.url}}" width="36" height="36" class="img-circle mt-2" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>{{user.username}}</p>
+                <a href="#"><i class="fa fa-circle text-success "></i> Online</a>
+            </div>
+        </div>
+
+
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                <li class="nav-item">
+                    <a href="{% url  'pharmacist_home' %}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Patient
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item pl-2">
+                            <a href="{% url 'manage_patient_pharmacist' %}" class="nav-link">
+                                <i class="fas fa-id-card-alt"></i>
+                                <p class="pl-2">Dispense</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item pl-2">
+                            <a href="{% url 'pharmacist_prescription' %}" class="nav-link">
+                                <i class="fas fa-pills"></i>
+                                <p class="pl-2">Manage disp</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Stock
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+               
+               
+                    <li class="nav-item pl-2">
+                        <a href="" class="nav-link">
+                            <i class="fas fa-pills"></i>
+                          <p class="pl-2">Manage Prescribe</p>
+                        </a>
+                      </li>
+              </ul>
+            </li> -->
+
+                <li class="nav-item">
+                    <a href="{% url 'manage_stock2' %}" class="nav-link">
+                        <i class="fas fa-layer-group mr-2"></i>
+                        <p>
+                            Manage Stock
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url  'patient_feedback_message' %}" class="nav-link">
+                        <i class="fas fa-tachometer-alt mr-2"></i>
+                        <p>
+                            Feedback
+                            <span class="right badge badge-danger">2</span>
+                        </p>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</aside>

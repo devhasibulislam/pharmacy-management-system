@@ -1,0 +1,128 @@
+<div class="container">
+           
+    <div class="tab-content">
+        <div class="tab-pane message-body active" id="inbox-message-1">
+         
+            <div class="message-chat">
+                <div class="chat-body">
+                    {% for msg in feedback %}
+
+                    <div class="message info">
+                        <img alt="" class="img-circle medium-image" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+
+                        <div class="message-body">
+                            <div class="message-info">
+                                <h4> Elon Musk </h4>
+                                <h5> <i class="fa fa-clock-o"></i> 2:25 PM </h5>
+                            </div>
+                            <hr>
+                            <div class="message-text">
+                                {{msg.feedback}}eed
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    {% endfor %}
+
+                    <!-- <div class="message my-message">
+                        <img alt="" class="img-circle medium-image" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+
+                        <div class="message-body">
+                            <div class="message-body-inner">
+                                <div class="message-info">
+                                    <h4> Dennis Novac </h4>
+                                    <h5> <i class="fa fa-clock-o"></i> 2:28 PM </h5>
+                                </div>
+                                <hr>
+                                <div class="message-text">
+                                    Thanks, I think I will use this for my next dashboard system.
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div> -->
+
+                   
+
+</div><!-- /.container-fluid -->
+</div>
+</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-6">
+    <div class="card card-info">
+            <div class="card-header">
+                    <h5>Stocked Drugs</h5>
+                    <!-- <label for="filter">Filter:</label> <input type="text"  id="filter"> -->
+                    <span class="select2-search select2-search--dropdown"><input class="select2-search__field" type="search" id="filter" tabindex="-1" autocorrect="off" autocapitalize="none" spellcheck="false" role="searchbox" aria-autocomplete="list" /></span>
+                </div>
+                <div class="form-group">
+                      </div>
+            <table class="table table-bordered table-hover dataTable table5" id="plist">
+                    <thead>
+
+                <tr>
+                    <th>No</th>
+                    <th>Drug</th>
+                    <th>Category</th>
+                    <th>Quantiy</th>
+                    <th>Date Stocked</th>
+
+                    <!-- <th>Mobile</th>
+
+                     <th>Address</th> -->
+
+                </tr>
+            </thead>
+            {% for stoc in drugs %}
+
+                   <tbody  id="japon">
+                <tr class="hov" data-id={{stoc.id}}>
+                    <td>{{stoc.id}} &#160;</td>
+                    <td>{{stoc.drug_name}} &#160;</td>
+                    <td>{{stoc.category}}</td>
+                    <td>{{stoc.quantity}}</td>
+
+                    <td>{{stoc.last_updated |date:"F   d, Y"}}</td>
+                  
+                    <!-- <td class="d-flex justify-content-center">
+                            <a href="" class="btn btn-sm btn-success update-drug" data-stoc={{stoc.id}} data-stock={{stoc.drug_name}} data-action="add">Edit</a>
+                            &nbsp; 
+                                   
+
+                            </td> -->
+                </tr>
+            </tbody>
+            {% endfor %}
+
+                  </table>
+    </div>
+     
+
+</div>

@@ -1,0 +1,69 @@
+{% extends 'clerk_templates/base_template.html'%} {% block main_content %}
+<section class="content">
+    <div class="row  m-2">
+        <div class="col-md-4">
+            <div class="card card-primary ">
+                <div class="card-header">
+                    <h5 class=" text-center text-white">
+                        {{patient.admin.first_name}}'s Details</h5>
+                </div>
+
+                <div class="card-body doc">
+                    <h5> Name: <span>{{patient.admin.first_name}}</span> </h5>
+                    <hr>
+                    <h5> Gender: <span>{{patient.gender}}</span> </h5>
+                    <hr>
+                    <h5> DOB: <span>{{patient.dob}}</span> </h5>
+                    <hr>
+                    <h5> address: <span>{{patient.address}}</span> </h5>
+                    <hr>
+                    <h5> Mobile: <span>{{patient.phone_number}}</span> </h5>
+                    <hr>
+                    <h5> Email: <span>{{patient.email}}</span> </h5>
+                    <hr>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card card-primary doc">
+                <div class="card-header">
+                    <h5>Prescription
+                    </h5>
+                </div>
+
+
+                </h6>
+                <table class="table">
+                    <tr>
+                        <th>No</th>
+                        <th>Description</th>
+                        <th>Prescription</th>
+                        <th></th>
+                    </tr>
+
+
+
+                    {% for prescription in prescription %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{prescription.description}}</td>
+                        <td>{{prescription.prescribe}}</td>
+
+                    </tr>
+
+
+
+                    {%endfor%}
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

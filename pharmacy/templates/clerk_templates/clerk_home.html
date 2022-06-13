@@ -1,0 +1,55 @@
+{% extends 'clerk_templates/base_template.html'%} {% block page_title %}
+<h4>Dashboard</h4>
+
+{% endblock page_title %} {% block main_content %}
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="card-body p-0 d-flex flex-fill illustration oyah">
+                    <div class="row g-0 w-100">
+                        <div class="col-md-6  col-sm-6">
+                            <div class="illustration-text p-3 m-1">
+                                <h4 class="illustration-text">Welcome Back, {{user.first_name}}!</h4>
+                                <p class="mb-0">Pharmacy Dashboard</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-6  col-sm-6  col-xs-2 align-self-end text-end ">
+                            <img src="https://appstack.bootlab.io/img/illustrations/customer-support.png" alt="Customer Support" class="img-fluid illustration-img" height="30">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 dash-icon">
+                <div class=" col-md-6   col-sm-6">
+                    <div class="small-box mojahi">
+                        <div class="inner">
+                            <h3>{{patients_total}}</h3>
+
+                            <p>Admitted Patients</p>
+                        </div>
+                        <div class="icon uzer">
+                            <i class="fas fa-wheelchair"></i>
+                        </div>
+                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</section>
+
+{% endblock main_content %}

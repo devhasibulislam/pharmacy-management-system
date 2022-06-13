@@ -1,0 +1,74 @@
+{% extends 'base.html'%} {% block main_content %} {% load static %}
+<style>
+    .swal2-popup {
+        display: none;
+        position: relative;
+        box-sizing: border-box;
+        flex-direction: column;
+        justify-content: center;
+        width: 32em;
+        max-width: 100%;
+        padding: 1em;
+        border: none;
+        border-radius: 5px;
+        background: #fff;
+        font-family: inherit;
+        font-size: 0.8rem;
+    }
+    
+    .swal2-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 2.8em;
+    }
+    
+    .done {
+        height: 100vh !important;
+    }
+    
+    .card {
+        border-radius: 10px;
+    }
+    
+    .btn {
+        font-size: 17px !important;
+    }
+</style>
+
+<div class="done bg-light h-100">
+    <div class="container h-100">
+        <div class="col-md-12 d-flex justify-content-center align-items-center align-content-center h-100 ">
+            <div class="card" style="width: 30rem;">
+                <div class="card-body">
+
+                    <div class="swal2-header mb-2">
+                        <ul class="swal2-progress-steps" style="display: none;"></ul>
+                        <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;">
+                            <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                            <span class="swal2-success-line-tip"></span>
+                            <span class="swal2-success-line-long"></span>
+                            <div class="swal2-success-ring"></div>
+                            <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                            <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+                        </div>
+                        <img class="swal2-image" style="display: none;">
+                        <h2 class="swal2-title" id="swal2-title" style="display: none;"></h2>
+                        <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">× </button>
+                    </div>
+                    <div class="text-center">
+                        <h3>Password reset complete</h3>
+
+                        <p>Your password has been set. You may go ahead and log in now.</p>
+
+                        <a href="{% url 'login' %}" class="btn btn-info px-5 py-2">Log in</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock main_content %}

@@ -1,0 +1,63 @@
+{% extends 'patient_templates/base_template.html'%}
+{% block page_title %}
+ <h4>Dashboard</h4>
+{% endblock page_title %}
+
+{% block link %}
+{% endblock link %}
+
+{% block main_content %}
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        
+        <div class="row">
+
+          <div class="col-md-4">
+              <div class="card" >
+              <img src="https://png.pngtree.com/illustrations/20190322/ourlarge/pngtree-business-office-flat-character-meeting-png-image_37339.jpg"  style="height: 200px;"class="card-img-top" alt="...">
+              <div class="card-body">
+                <h3 class="card-title py-2" style="font-size:26px; font-weight:700;">Hello, {{request.user}}</h3>
+                  <!-- /.card-header -->
+             
+              </div>
+            </div>
+          </div>
+          
+      <div class="col-md-3">
+        <div class="ro">
+          <div class="col-lg-12 col-6">
+            <!-- small box -->
+            <div class="small-box  mojahi">
+              <div class="inner">
+                <h3>{{total_disp}}</h3>
+    
+                <p>Dispensed Drug</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+     
+          <!-- ./col -->
+   
+        </div>
+        
+      </div>
+ 
+   
+  
+      
+        </div>
+
+
+        <!--  -->
+
+        
+</section>
+
+{% endblock main_content %}
+          

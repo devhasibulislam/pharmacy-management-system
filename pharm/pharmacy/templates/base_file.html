@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pharmacy Dispensing System</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/main.css'%}">
+    <link rel="stylesheet" href="{% static 'css/profile.css'%}">
+
+    <link rel="stylesheet" href="{% static " fontawesome-free/css/all.min.css " %}">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte.css'  %}">
+    <link rel="stylesheet" href="{% static 'pace-progress/themes/black/pace-theme-flat-top.css' %}">
+    <link rel="stylesheet" href="{% static 'datatables-bs4/css/dataTables.bootstrap4.min.css'%}">
+    <link rel="stylesheet" href="{% static 'datatables-responsive/css/responsive.bootstrap4.min.css'%}">
+    <link rel="stylesheet" href="{% static 'datatables-buttons/css/buttons.bootstrap4.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/select2.css' %}">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link href="{% static 'jquery-ui2/jquery-ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'jquery-ui2/jquery-ui.structure.min.css' %}" rel="stylesheet">
+    <link href="{% static 'jquery-ui2/jquery-ui.theme.min.css' %}" rel="stylesheet">
+
+
+</head>
+{% block htm %} {% endblock htm%}
+
+
+
+<script src="{% static " jquery/jquery.min.js "  %}"></script>
+
+<!-- Bootstrap 4 -->
+<script src="{% static " bootstrap/js/bootstrap.bundle.min.js "  %}"></script>
+
+<!-- AdminLTE App -->
+<script src="{% static 'dist/js/adminlte.js'  %}"></script>
+
+<script src="{% static 'jquery-ui2/jquery-ui.min.js' %}"></script>
+<script src="{% static 'jquery-ui2/jquery-ui.js' %}"></script>
+<!-- jquery slimscroll js -->
+<script src="{% static 'jquery-slimscroll/js/jquery.slimscroll.js'%}"></script>
+<!-- modernizr js -->
+<!-- classie js -->
+<!-- i18next.min.js -->
+<script src="{% static 'i18next/js/i18next.min.js'%}"></script>
+<script src="{% static 'i18next-xhr-backend/js/i18nextXHRBackend.min.js'%}"></script>
+
+<script src="{% static 'js/paging.js' %}"></script>
+
+
+<script src="{% static 'pace-progress/pace.min.js' %}"></script>
+
+<script src="{% static 'datatables/jquery.dataTables.js'%}"></script>
+<script src="{% static 'datatables-bs4/js/dataTables.bootstrap4.min.js'%} "></script>
+<script src="{% static 'datatables-responsive/js/dataTables.responsive.min.js'%} "></script>
+<script src="{% static 'datatables-responsive/js/responsive.bootstrap4.min.js'%}"></script>
+<script src="{% static 'datatables-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'datatables-buttons/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'pdfmake/pdfmake.min.js'%}"></script>
+<script src="{% static 'pdfmake/vfs_fonts.js'%}"></script>
+<script src="{% static 'datatables-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'datatables-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'datatables-buttons/js/buttons.colVis.min.js'%}"></script>
+<script src="{% static 'js/select2.min.js'%}"></script>
+
+<script src="{% static 'js/datejs.js' %}"></script>
+
+{% block js%} {% endblock %}
+<script>
+    $(document).ready(function() {
+        $(function() {
+
+            $("#plist").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                "buttons": ["excel", "print"],
+                "lengthMenu": [5]
+            }).buttons().container().appendTo('#plist_wrapper .col-md-6:eq(0)');
+            // $('#plist').DataTable({
+            //   "lengthChange": true,
+
+            //   "lengthMenu":[5]
+            // });
+
+        });
+    });
+</script>
+
+<script>
+    $("#id_drug_id").select2({
+        placeholder: "Dispense Drug Here",
+        allowClear: true
+    });
+    $("#id_drug_id").select2();
+    $("#id_drug_id").on("select2:open", function(e) {
+
+        $('#id_drug_id').change(function() {
+            var data = $(this).val();
+            // alert(data);       
+            $("#id_taken").val(data)
+
+        });
+
+        $('#select2-search__field')
+            .text(drugname)
+            .trigger('change');
+    });
+    $('#id_drug_id').select2({
+        placeholder: " Search Dispense Drug here",
+        width: "100%",
+        height: "45px"
+
+
+
+    });
+</script>
+</body>
+
+</html>

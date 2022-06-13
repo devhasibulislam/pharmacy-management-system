@@ -1,0 +1,169 @@
+ {% extends 'patient_templates/base_template.html'%} {% load crispy_forms_tags %} {% block page_title %}
+<h5>Add patient</h5>
+
+{% endblock page_title %} {% block main_content %}
+
+
+<style>
+    .you,
+    .me {
+        display: none !important;
+    }
+    
+    .col-md-12 {
+        padding-right: 20px !important;
+    }
+</style>
+
+
+<section class="content lope ">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Leave a Feedback Message</h3>
+                    </div>
+                    {% include 'patient_templates/alert_messeges.html' %}
+
+
+                    <form method="POST" action="{% url 'patient_feedback_save' %}">
+                        {% csrf_token %}
+                        <div class="chat-footer">
+
+                            <div class="form-group mt-2">
+                                <textarea name="feedback_message" class="form-control send-message-text" rows="2" placeholder="Feedback Message"></textarea>
+                            </div>
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary float-right   mx-5">Leave a Feedback</button>
+                        </div>
+
+                    </form>
+
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+
+                                    <th>Messages</th>
+
+                                </tr>
+                            </thead>
+
+                            {% for feedback in feedback %}
+                            <tbody>
+                                <tr>
+                                    <td class="you">{{ feedback.id }}</td>
+                                    <td class="me">{{ feedback.patient_id.admin.first_name }} {{ feedback.patient_id.admin.last_name }}</td>
+
+
+                                    <td>
+
+
+                                        <div class="message info">
+                                            <img alt="" class="img-circle medium-image" src="{{feedback.patient_id.profile_pic.url}}">
+
+                                            <div class="message-body">
+                                                <div class="message-info">
+                                                    <h4>{{feedback.patient_id}}</h4>
+                                                    <h5> <i class="fa fa-clock-o">{{feedback.created_at}}</i> </h5>
+                                                </div>
+                                                <hr>
+                                                <div class="message-text">
+                                                    {{feedback.feedback}}
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+
+
+
+                                        {% if feedback.feedback_reply == "" %}
+
+                                        <div class="message my-message">
+                                            <img alt="" class="img-circle medium-image" src="{{user.adminhod.profile_pic.url}}">
+
+                                            <div class="message-body">
+                                                <div class="message-body-inner">
+                                                    <div class="message-info">
+                                                        <h4> {{user.username}}</h4>
+                                                        <h5> <i class="fa fa-clock-o"></i>{{feedback.created_at}}</h5>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="message-text">
+
+                                                        <b style="font-size:1.2rem" font-style="italic !important">  ```Waiting For Pharmacist to reply``
+                                                            </b>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        {% else %}
+                                        <div class="message my-message">
+                                            <img alt="" class="img-circle medium-image" src="{{user.adminhod.profile_pic.url}}">
+
+                                            <div class="message-body">
+                                                <div class="message-body-inner">
+                                                    <div class="message-info">
+                                                        <h4> {{user.username}}</h4>
+                                                        <h5> <i class="fa fa-clock-o"></i>{{feedback.created_at}}</h5>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="message-text">
+                                                        {{feedback.feedback_reply}}
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+
+                                        {% endif %}
+
+                                    </td>
+                                    <td>
+
+                                        <a href="{% url 'delete_fed2' feedback.id %}" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+
+
+
+                </div>
+                <!-- /.card-body -->
+
+
+
+
+            </div>
+            <!-- /.card -->
+
+
+
+        </div>
+    </div>
+
+
+
+    </div>
+
+    </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+{% endblock main_content %}

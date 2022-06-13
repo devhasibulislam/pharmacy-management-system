@@ -1,0 +1,52 @@
+{% extends 'pharmacist_templates/base_template.html'%} {% load crispy_forms_tags %} {% block page_title %}
+<h5>Add patient</h5>
+
+{% endblock page_title %} {% block main_content %}
+<section class="content" style="">
+    <div class="container-fluid">
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Student</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+
+                    <form role="form" method="POST" action="{{ action_path }}" enctype="multipart/form-data">
+                        {% csrf_token %} {% include 'pharmacist_templates/alert_messeges.html' %}
+
+
+
+                        <div class="card-body">
+
+
+                            <div class="form-group">
+                                {% for field in form %}
+
+                                <!-- {{ field.errors }} -->
+                                {{ field.label_tag }} {{ field }} {% endfor %}
+
+                            </div>
+
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock main_content %}

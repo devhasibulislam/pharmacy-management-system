@@ -1,0 +1,92 @@
+{% extends 'hod_templates/base_template.html'%}
+{% load static %}
+{% block page_title %}
+<h5>All patients</h5>
+
+{% endblock page_title %}
+{% block main_content %}
+<section class="content">
+    
+        {% if messages %}
+        <div class="form-group">
+        <div class="col-12">
+            {% for message in messages %}
+            {% if message.tags == "error" %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+            {% elif message.tags == "success" %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        </div>
+        {% endif %}
+    <div class="row">
+        
+        <div class="col-md-12 px-3">
+                
+            <div class="card card-primar sc">
+                <div class="card-header">
+                    <span>Patiets Records</span>
+                   <div class="card-tools d-flex">
+                       
+              
+                <a class="btn btn-sm btn-info mr-2" href="{% url 'patient_form' %}" role="button">+ Add Staff</a> 
+
+            </div>
+
+                </div>
+                <table  class="table table-bordered table-hover dataTable" id="plist">
+                    <thead>
+                            <tr>
+                                    <th>No</th>
+                                    <th>Profile</th>
+                                    <th>UserName</th>
+                                    <th>LastName</th>
+                                    <th>Email</th>
+            
+                                    <th>Mobile</th>
+            
+                                     <th>Last Login</th>
+                                     <th class="text-center">Action</th>
+                                    
+        
+                            </tr>
+                    </thead>
+                    <tbody>
+                            {% for patient in patients %}
+                            <tr class="hov"> <td>{{patient.admin.id}}</td>
+                                <td> <img src="{{patient.profile_pic.url}}" class="" width="35" height="35" alt=""></td>
+        
+                                <td>{{patient.admin}}</td>
+                                <td>{{patient.admin.last_name}}</td>
+        
+                                <td>{{patient.admin.email}}</td>
+                                <td>{{patient.phone_number}}</td>
+        
+                                <td>{{patient.admin.last_login}}</td>
+
+                                <td><a href="{% url 'edit_patient' patient.admin.id %}" class="btn btn-sm btn-success">Edit</a>                     
+                                    <a href="{% url 'delete_patient' patient.id %}" class="btn btn-sm btn-danger">Delete</a></<a>
+                                    <a href="{% url 'patient_record' patient.id %}" class="btn btn-sm btn-warning">View</a></td> 
+            
+                            </tr>
+                            {% endfor %}
+                    </tbody>
+                   
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

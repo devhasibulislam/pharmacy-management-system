@@ -1,0 +1,50 @@
+{% extends 'hod_templates/base_template.html'%} {% load crispy_forms_tags %} {% block page_title %}
+<h5>Add Drug Category</h5>
+
+{% endblock page_title %} {% block main_content %}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            {% include 'hod_templates/alert_messeges.html'%}
+
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Add Drug Category</h3>
+                </div>
+
+                <form method="POST" style="font-size:13px;" class='px-3 py-2'>
+                    {% csrf_token %} {% if messages %}
+                    <div class="form-group">
+                        <div class="col-12">
+                            {% for message in messages %} {% if message.tags == "error" %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            {% elif message.tags == "success" %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            {% endif %} {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+
+
+                        {{form|crispy}}
+
+                    </div>
+                    <input type="submit" class="btn btn-info">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock main_content %}

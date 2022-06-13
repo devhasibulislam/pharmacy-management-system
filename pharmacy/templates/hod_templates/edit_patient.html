@@ -1,0 +1,48 @@
+{% extends 'hod_templates/base_template.html'%} {% load crispy_forms_tags %} {% block page_title %}
+<h5>Add patient</h5>
+
+{% endblock page_title %} {% block main_content %}
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Student</h3>
+                    </div>
+
+                    <form role="form" method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+
+
+
+                        <div class="card-body">
+
+
+                            <div class="form-group">
+                                {% for field in form %}
+
+                                <!-- {{ field.errors }} -->
+                                {{ field.label_tag }} {{ field }} {% endfor %}
+
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">submit</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock main_content %}

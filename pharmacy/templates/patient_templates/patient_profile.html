@@ -1,0 +1,113 @@
+{% extends 'patient_templates/base_template.html'%} {% block main_content %}
+<div class="content">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-body">
+                <a href="" class="btn btn-warning"> &#8592; Back to Profile  </a>
+                <hr>
+                <h3 style="text-align:center;">Account Settings</h3>
+                <hr>
+                <div class="profile-sidebar">
+
+                    <div class="profile-userpic">
+                        <img src="{{request.user.patients.profile_pic.url}}" class="img-responsive" alt="">
+                    </div>
+
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            {{request.user.first_name}} {{request.user.last_name}}
+                        </div>
+                        <div class="profile-usertitle-job">
+                            Receptionist
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Update Profile</h3>
+                </div>
+                <form action="" method="post" action="{% url 'clerk_profile' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card-body">
+
+                        {% include 'patient_templates/alert_messeges.html' %}
+
+                        <h6 class="heading-small text-muted ">User information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Username</label>
+                                        <input type="text" class="form-control" name="username" value="{{ user.username }}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Email </label>
+                                        <input type="text" class="form-control" name="email" value="{{ user.email }}">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">First Name </label>
+                                        <input type="text" class="form-control" name="first_name" value="{{ patien.first_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label class="form-control-label">Last Name </label>
+                                        <input type="text" class="form-control" name="last_name" value="{{ patien.last_name }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <h6 class="heading-small text-muted mb-1">Contact information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="form-group focused">
+                                        <label class="form-control-label" for="input-address">Address</label>
+                                        <input class="form-control" placeholder="Home Address" name="address" type="text" value="{{patien.address}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group focused">
+                                        <label class="form-control-label" for="input-city">Mobile</label>
+                                        <input type="text" id="input-city" name="mobile" class="form-control" placeholder="mobile" value="{{patien.mobile}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="file" name="profile_pic" accept="image/*" id="id_profile_pic">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="card-footer mt-3">
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </div>
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
