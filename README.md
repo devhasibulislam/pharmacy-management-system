@@ -36,7 +36,7 @@
      - Manage Medicinal Drugs
      - Manage Stocks
      - Dispense Medicinal Drug
-     - Manage Personal Accounti
+     - Manage Personal Account
 
 ------------------------------------------------------------------------------------
 ### Patient Login:
@@ -44,9 +44,9 @@
 - password: 1234
 
            Patient Main Featues
-     -  Manage his/her medications
+     - Manage his/her medications
      - Feedback Pharmacist incase of dispensing issue
-     -  manage Personal Account
+     - Manage Personal Account
       
  
 -----------------------------------------------------------------------------------
@@ -88,13 +88,3 @@ N/B: When adding New patient there are some validations in filling the forms
      Fake Filler Extension Chrome link:https://chrome.google.com/webstore/detail/fake-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
 
 --------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
